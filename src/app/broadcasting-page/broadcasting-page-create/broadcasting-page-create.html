@@ -1,0 +1,137 @@
+<div class="broadcasting-create">
+  <app-main-header>
+    <section header-title>Новая рассылка</section>
+    <section header-controls>
+      <button
+        mat-button color="primary"
+        routerLink="/broadcasting">
+        Отмена
+      </button>
+      <button
+        mat-flat-button color="primary"
+        (click)="onSaveClick()">
+        Сохранить и закрыть
+      </button>
+    </section>
+  </app-main-header>
+
+  <form
+    class="broadcasting-create__form"
+    [formGroup]="formGroup"
+    (ngSubmit)="onSubmit()">
+    <mat-horizontal-stepper
+      #stepper class="broadcasting-stepper"
+      formArrayName="formArray"
+      linear="true"
+      (selectionChange)="onSelectionChange()">
+
+      <!-- STEP 1 -->
+      <mat-step formGroupName="0" [stepControl]="formArray.get([0])" label="Сообщение">
+        <div class="broadcasting-stepper__form form">
+          <h2 class="form__title">Создайте сообщение</h2>
+          <mat-form-field class="form__textarea-container">
+            <h3 class="form__textarea-title">Текстовое сообщение</h3>
+            <textarea
+              matInput
+              formControlName="content"
+              required>
+            </textarea>
+            <div class="form__textarea-controls">
+              <button mat-button color="primary">
+                Добавить кнопку
+              </button>
+            </div>
+          </mat-form-field>
+        </div>
+        <div class="broadcasting-stepper__info">
+          <div class="broadcasting-stepper__info-buble"></div>
+          <h2 class="broadcasting-stepper__info-title">
+            Lorem, ipsum dolor.
+          </h2>
+          <div class="broadcasting-stepper__info-description">
+            Lorem ipsum dolor sit amet consectetur adipisicing elit. Fugit, ratione.
+          </div>
+        </div>
+      </mat-step>
+      <!-- /STEP 1 -->
+
+      <!-- STEP 2 -->
+      <mat-step formGroupName="1" [stepControl]="formArray.get([1])" label="Сегментация">
+        <div class="broadcasting-stepper__form form">
+          <h2 class="form__title">Выберите канал</h2>
+          <mat-form-field appearance="fill">
+            <mat-label>Канал</mat-label>
+            <mat-select formControlName="channel">
+              <mat-option
+                *ngFor="let channel of channels"
+                [value]="channel.id">
+                {{channel.name}}
+              </mat-option>
+            </mat-select>
+          </mat-form-field>
+        </div>
+        <div class="broadcasting-stepper__info">
+          <div class="broadcasting-stepper__info-buble"></div>
+          <h2 class="broadcasting-stepper__info-title">
+            Lorem ipsum dolor sit.
+          </h2>
+          <div class="broadcasting-stepper__info-description">
+            Lorem ipsum dolor sit amet, consectetur adipisicing.
+          </div>
+        </div>
+      </mat-step>
+      <!-- /STEP 2 -->
+
+      <!-- STEP 3 -->
+      <mat-step formGroupName="2" [stepControl]="formArray.get([2])" label="Отправка">
+        <div class="broadcasting-stepper__form form">
+          <h2 class="form__title">Мы отправим это сообщение 25 пользователям</h2>
+          <mat-form-field>
+            <mat-label>Введите заголовок</mat-label>
+            <input
+              matInput
+              formControlName="title"
+              placeholder="Заголовок"
+              required />
+          </mat-form-field>
+          <button
+            mat-flat-button
+            color="primary"
+            type="submit"
+            [disabled]="formGroup.invalid || submitted">
+            Отправить сейчас
+          </button>
+        </div>
+        <div class="broadcasting-stepper__info">
+          <div class="broadcasting-stepper__info-buble"></div>
+          <h2 class="broadcasting-stepper__info-title">Lorem.</h2>
+          <div class="broadcasting-stepper__info-description">
+            Lorem ipsum dolor sit, amet consectetur adipisicing elit.
+          </div>
+        </div>
+      </mat-step>
+      <!-- /STEP 3 -->
+
+      <ng-template matStepperIcon="edit">
+        <mat-icon>done</mat-icon>
+      </ng-template>
+    </mat-horizontal-stepper>
+  </form>
+
+  <app-main-footer>
+    <section footer-controls>
+      <button
+        mat-button color="primary"
+        (click)="stepper.previous()"
+        *ngIf="stepper.selected !== stepper.steps.first">
+        Назад
+      </button>
+      <button
+        mat-flat-button color="primary"
+        (click)="stepper.next()"
+        *ngIf="stepper.selected !== stepper.steps.last">
+        Далее
+      </button>
+    </section>
+  </app-main-footer>
+</div>

@@ -1,0 +1,8 @@
+<mat-drawer-container class="broadcasting">
+  <mat-drawer mode="side" [opened]="true">
+    <app-main-leftbar title="Рассылки" [menuItems]="menuItems"></app-main-leftbar>
+  </mat-drawer>
+  <mat-drawer-content class="broadcasting__page">
+    <router-outlet></router-outlet>
+  </mat-drawer-content>
+</mat-drawer-container>

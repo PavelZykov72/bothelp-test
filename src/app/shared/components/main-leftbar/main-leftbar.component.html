@@ -1,0 +1,13 @@
+<div class="main-leftbar">
+  <h2 class="main-leftbar__title">{{title | titlecase}}</h2>
+  <ul class="main-leftbar__menu" *ngIf="menuItems.length">
+    <li
+      class="main-leftbar__menu-item"
+      routerLinkActive="active"
+      *ngFor="let item of menuItems">
+      <a [routerLink]="item.route" class="main-leftbar__menu-link">
+        {{item.name}}
+      </a>
+    </li>
+  </ul>
+</div>

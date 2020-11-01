@@ -1,0 +1,86 @@
+<div class="broadcasting-send">
+  <app-main-header>
+    <section header-title>
+      <mat-icon
+      aria-hidden="false"
+      aria-label="Отправленные">send</mat-icon>
+      Отправленные
+    </section>
+    <section header-controls>
+      <button
+        mat-flat-button color="primary"
+        [routerLink]="['/broadcasting/send', 'create']">
+        Новая рассылка
+      </button>
+    </section>
+    <section header-content>
+      <p>Вы находитесь в разделе рассылок. Вы можете осуществить по вашей базе пользователей.</p>
+      <ul class="list-inline">
+        <li><a href="#" (click)="$event.preventDefault()">Что такое ручные рассылки</a></li>
+        <li><a href="#" (click)="$event.preventDefault()">С чего начать</a></li>
+        <li><a href="#" (click)="$event.preventDefault()">Обучающие видео</a></li>
+      </ul>
+
+      <mat-divider></mat-divider>
+
+      <ul class="list-inline broadcasting-send__controls">
+        <li><button mat-flat-button disabled>Любой отправитель</button></li>
+        <li><button mat-flat-button disabled>Люди и пользователи</button></li>
+        <li><button mat-flat-button disabled>Любые типы статусов</button></li>
+      </ul>
+
+      <div class="broadcasting-send__amount" *ngIf="dataSource && dataSource.length">
+        {{dataSource?.length}} рассылки
+      </div>
+    </section>
+  </app-main-header>
+
+  <table mat-table [dataSource]="dataSource" class="table">
+    <ng-container matColumnDef="selected">
+      <th mat-header-cell *matHeaderCellDef>
+        <mat-checkbox></mat-checkbox>
+      </th>
+      <td mat-cell *matCellDef="let element">
+        <mat-checkbox></mat-checkbox>
+      </td>
+    </ng-container>
+    <ng-container [matColumnDef]="column.id" *ngFor="let column of initColumns;">
+      <th mat-header-cell *matHeaderCellDef>
+        <div class="table__head">
+          <span matTooltip="{{column.caption}}">
+            {{column.caption}}
+          </span>
+        </div>
+      </th>
+      <td mat-cell *matCellDef="let element">
+        <div class="table__value" [ngSwitch]="column.id">
+          <ng-template ngSwitchCase="created">
+            {{element[column.id] | date: 'mediumDate'}}
+          </ng-template>
+          <ng-template ngSwitchCase="send">
+            {{element[column.id]}} <mat-icon aria-hidden="false">person</mat-icon>
+          </ng-template>
+          <ng-template ngSwitchCase="views">
+            {{element[column.id]}} <mat-icon aria-hidden="false">remove_red_eye</mat-icon>
+          </ng-template>
+          <ng-template ngSwitchCase="clicks">
+            {{element[column.id]}} <mat-icon aria-hidden="false">remove_red_eye</mat-icon>
+          </ng-template>
+          <ng-template ngSwitchDefault>{{element[column.id]}}</ng-template>
+        </div>
+      </td>
+    </ng-container>
+    <ng-container matColumnDef="actions">
+      <th mat-header-cell *matHeaderCellDef></th>
+      <td mat-cell *matCellDef="let element">
+        <mat-icon aria-hidden="false">more_vert</mat-icon>
+      </td>
+    </ng-container>
+
+    <tr mat-header-row *matHeaderRowDef="displayedColumns"></tr>
+    <tr mat-row *matRowDef="let row; columns: displayedColumns;"></tr>
+  </table>
+  <div class="broadcasting-send__empty" *ngIf="!dataSource || !dataSource.length">
+    {{ loading ? 'Загрузка...' : 'Нет рассылок' }}
+  </div>
+</div>

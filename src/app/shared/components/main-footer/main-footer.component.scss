@@ -1,0 +1,16 @@
+:host {
+  margin-top: auto;
+}
+
+.main-footer {
+  padding: 20px 30px;
+  position: relative;
+  border-top: 1px solid rgba(0,0,0,.12);
+}
+
+:host ::ng-deep [footer-controls] {
+  margin-left: auto;
+  button + button {
+    margin-left: 15px;
+  }
+}
