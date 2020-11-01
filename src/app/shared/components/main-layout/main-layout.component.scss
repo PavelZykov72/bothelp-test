@@ -1,0 +1,65 @@
+@import 'variables';
+
+.main-layout {
+  height: 100%;
+
+  .mat-toolbar {
+    background: inherit;
+    padding: 0;
+  }
+
+  .mat-icon {
+    height: 20px;
+    width: 20px;
+    font-size: 20px;
+  }
+
+  .mat-nav-list .mat-list-item {
+    height: 60px;
+    &.active {
+      background: #f7f7f7;
+
+      .mat-icon {
+        color: $color-primary;
+      }
+    }
+  }
+
+  &__sidenav {
+    width: $leftbar-width;
+    height: 100%;
+    background: #efefef;
+    border: 0;
+  }
+
+  &__sidenav-logo {
+    background: $color-primary;
+    box-shadow: none;
+    margin: 0 auto;
+    height: 45px;
+    width: 45px;
+    padding: 10px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+  }
+
+  &__sidenav-img {
+    height: 90%;
+    width: 90%;
+  }
+
+  &__sidenav-list {
+    margin-top: 20px;
+    padding: 0;
+    text-align: center;
+  }
+}
+::ng-deep {
+  .mat-drawer-container {
+    color: inherit;
+  }
+  .mat-list-item-content {
+    justify-content: center;
+  }
+}

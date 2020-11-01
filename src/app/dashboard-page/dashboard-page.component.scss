@@ -1,0 +1,16 @@
+.dashboard-page {
+  display: flex;
+  flex-flow: column;
+  align-items: center;
+  justify-content: center;
+  color: #aaa;
+  height: 100%;
+
+  &__title {
+    color: #999;
+    font-size: 162px;
+    line-height: 162px;
+    display: block;
+    margin: 0 0 15px;
+  }
+}

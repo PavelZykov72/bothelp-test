@@ -1,0 +1,31 @@
+@import 'variables';
+
+.main-leftbar {
+  background: #f7f7f7;
+  padding: 20px 15px;
+  width: 250px;
+  height: 100%;
+
+  &__title {
+    font-size: 18px;
+  }
+
+  &__menu {
+    margin-top: 20px;
+    list-style: none;
+  }
+
+  &__menu-item {
+    margin-bottom: 10px;
+
+    &:last-child {
+      margin-bottom: 0;
+    }
+
+    &.active {
+      .main-leftbar__menu-link {
+        color: $color-link-active;
+      }
+    }
+  }
+}
