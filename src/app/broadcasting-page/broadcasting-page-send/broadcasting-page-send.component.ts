@@ -39,7 +39,7 @@ export class BroadcastingSendPageComponent implements OnInit {
 
   ngOnInit(): void {
     this.dataSource = this.broadcastingService.getBroadcastsApp();
-    this.loading = this.dataSource.length === 0;
+    this.loading = !this.dataSource || this.dataSource.length === 0;
     this.broadcasts$
       .pipe(
         takeUntil(this.destroy$),
