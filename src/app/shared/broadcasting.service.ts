@@ -62,7 +62,7 @@ export class BroadcastingService {
     return of(this.load('broadcasts'))
     .pipe(
       delay(1000),
-      tap((list) => this.list = list)
+      tap((list) => this.list = (list || this.list))
     );
   }
 
