@@ -52,7 +52,7 @@ export class BroadcastingService {
           clicks: getRandom(),
           created: new Date()
         };
-        this.list = [ ...list, element ];
+        this.list = [ ...(list || []), element ];
         return this.save('broadcasts', this.list)
       })
     );
